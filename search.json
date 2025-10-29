@@ -12,5 +12,12 @@
     "title": "Website",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "index.html#projects",
+    "href": "index.html#projects",
+    "title": "Website",
+    "section": "Projects",
+    "text": "Projects\nHere are some of my personal projects:\n\n🎮 2048 GPA Game"
   }
 ]

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://henryjiang.me/writing.html</loc>
-    <lastmod>2025-10-29T01:53:14.577Z</lastmod>
-  </url>
-  <url>
-    <loc>https://henryjiang.me/acedemics.html</loc>
-    <lastmod>2025-10-29T01:19:16.716Z</lastmod>
-  </url>
-  <url>
-    <loc>https://henryjiang.me/photography.html</loc>
-    <lastmod>2025-10-29T01:53:07.531Z</lastmod>
-  </url>
-  <url>
-    <loc>https://henryjiang.me/projects.html</loc>
-    <lastmod>2025-10-29T01:02:36.787Z</lastmod>
+    <loc>https://henryjiang.me/academics.html</loc>
+    <lastmod>2025-10-29T02:03:47.426Z</lastmod>
   </url>
   <url>
     <loc>https://henryjiang.me/index.html</loc>
-    <lastmod>2025-10-29T01:03:12.009Z</lastmod>
+    <lastmod>2025-10-29T02:03:33.449Z</lastmod>
+  </url>
+  <url>
+    <loc>https://henryjiang.me/photography.html</loc>
+    <lastmod>2025-10-29T02:04:16.816Z</lastmod>
+  </url>
+  <url>
+    <loc>https://henryjiang.me/projects.html</loc>
+    <lastmod>2025-10-29T02:03:56.964Z</lastmod>
+  </url>
+  <url>
+    <loc>https://henryjiang.me/writing.html</loc>
+    <lastmod>2025-10-29T02:04:04.982Z</lastmod>
   </url>
 </urlset>

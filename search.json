@@ -1,37 +1,37 @@
 [
   {
-    "objectID": "writing.html",
-    "href": "writing.html",
-    "title": "Writing",
+    "objectID": "academics.html",
+    "href": "academics.html",
+    "title": "Academics",
     "section": "",
-    "text": "✍️ Writing\nHere I share reflections, ideas, and stories — sometimes about physics, sometimes about the world."
+    "text": "📚 Academics\nA collection of my coursework, classes, and academic projects at The Ohio State University."
   },
   {
-    "objectID": "acedemics.html",
-    "href": "acedemics.html",
-    "title": "Acedemics",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
     "section": "",
-    "text": "Acedemics information"
+    "text": "👋 Hi, I’m Henry Jiang\nPhysics undergraduate at The Ohio State University.\nThis is my personal website — built with Quarto and hosted on GitHub Pages.\nYou can find my current work, projects, and writings below!"
   },
   {
     "objectID": "photography.html",
     "href": "photography.html",
-    "title": "Photographs",
+    "title": "Photography",
     "section": "",
-    "text": "📸 Photographs\nA collection of some of my favorite shots from trips, hikes, and life moments.\nStay tuned — I’ll be uploading them soon!"
+    "text": "📸 Photography\nA collection of my favorite shots from trips, hikes, and life moments.\nStay tuned — new photos coming soon!"
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "🎮 2048 GPA Game\nA GPA-themed 2048 game I built for fun.\nUse your arrow keys to play!"
+    "text": "⚙️ Projects\n\n2048 GPA Game\nA GPA-themed 2048 game I built for fun.\nPlay it here!"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Henry Jiang",
+    "objectID": "writing.html",
+    "href": "writing.html",
+    "title": "Writing",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "✍️ Writing\nHere I share reflections, ideas, and stories — sometimes about physics, sometimes about the world."
   }
 ]

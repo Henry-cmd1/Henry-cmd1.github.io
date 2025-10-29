@@ -18,3 +18,5 @@ _site/
 # Python cache (if you ever use code chunks)
 __pycache__/
 *.pyc
+
+/.quarto/

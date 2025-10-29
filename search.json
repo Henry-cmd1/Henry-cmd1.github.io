@@ -2,36 +2,36 @@
   {
     "objectID": "academics.html",
     "href": "academics.html",
-    "title": "Academics",
+    "title": "📚 Academics",
     "section": "",
-    "text": "📚 Academics\nA collection of my coursework, classes, and academic projects at The Ohio State University."
+    "text": "A collection of my coursework, classes, and academic projects at The Ohio State University."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome",
     "section": "",
-    "text": "👋 Hi, I’m Henry Jiang\nPhysics undergraduate at The Ohio State University.\nThis is my personal website — built with Quarto and hosted on GitHub Pages.\nYou can also find my social media on the top right of the navigation bar!"
+    "text": "👋 Hi, I’m Henry Jiang\nPhysics undergraduate at The Ohio State University.\nThis is my personal website — built with Quarto and hosted on GitHub Pages.\nYou can also find my social media on the top right of the navigation bar!\nMore information is coming right up. I’m still figuring out some sturctures and push functions for Quarto and GitHub reository.\nHomepage for this website on GitHub"
   },
   {
     "objectID": "photography.html",
     "href": "photography.html",
-    "title": "Photography",
+    "title": "📸 Photography",
     "section": "",
-    "text": "📸 Photography\nA collection of my favorite shots from trips, hikes, and life moments.\nStay tuned — new photos coming soon!"
+    "text": "A collection of my favorite shots from trips, hikes, and life moments.\nStay tuned — new photos coming soon!"
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
-    "title": "Projects",
+    "title": "⚙️ Projects",
     "section": "",
-    "text": "⚙️ Projects\n\n2048 GPA Game\nA GPA-themed 2048 game I built for fun.\nPlay the game"
+    "text": "2048 GPA Game\nA GPA-themed 2048 game I built for fun.\nPlay the game"
   },
   {
     "objectID": "writing.html",
     "href": "writing.html",
-    "title": "Writing",
+    "title": "✍️ Writing",
     "section": "",
-    "text": "✍️ Writing\nHere I share reflections, ideas, and stories — sometimes about physics, sometimes about the world."
+    "text": "Here I share reflections, ideas, and stories — sometimes about physics, sometimes about the world."
   }
 ]

@@ -1,23 +1,23 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Website",
+    "title": "Henry Jiang",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   },
   {
-    "objectID": "index.html#projects",
-    "href": "index.html#projects",
-    "title": "Website",
-    "section": "Projects",
-    "text": "Projects\nHere are some of my personal projects:\n\n🎮 2048 GPA Game"
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "🎮 2048 GPA Game\nA GPA-themed 2048 game I built for fun.\nUse your arrow keys to play!"
+  },
+  {
+    "objectID": "acedemics.html",
+    "href": "acedemics.html",
+    "title": "Acedemics",
+    "section": "",
+    "text": "Acedemics information"
   }
 ]

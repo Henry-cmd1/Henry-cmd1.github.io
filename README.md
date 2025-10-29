@@ -6,8 +6,11 @@ It serves as a place to share my academic projects, coursework, and research in 
 ### 🔗 Links
 - **Website:** [https://henryjiang.me](https://henryjiang.me)  
 - **GitHub:** [https://github.com/Henry-cmd1](https://github.com/Henry-cmd1)  
-- **LinkedIn:** [https://linkedin.com/in/henryshihengjiang](https://linkedin.com/in/henryjiang)
+- **LinkedIn:** [https://linkedin.com/in/henryshihengjiang](https://linkedin.com/in/henryshihengjiang)
+
 
 ---
 
 > Built with ❤️ and ChatGPT’s help.
+
+**O-H!** — *Go Bucks!* 🏈🌰

@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-11-28">
+
+<title>Problem A: Space Station Air Evacuation Time – Henry Jiang</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Henry Jiang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../writing/writing.html"> 
+<span class="menu-text">Writing</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Henry-cmd1" target="_blank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/henryshihengjiang" target="_blank"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://instagram.com/henry_jiang11" target="_blank"> <i class="bi bi-instagram" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract"><span class="header-section-number">1</span> Abstract</a></li>
+  <li><a href="#notations-used" id="toc-notations-used" class="nav-link" data-scroll-target="#notations-used"><span class="header-section-number">2</span> Notations Used</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">3</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">3.1</span> Background</a></li>
+  <li><a href="#problem-restatement" id="toc-problem-restatement" class="nav-link" data-scroll-target="#problem-restatement"><span class="header-section-number">3.2</span> Problem Restatement</a></li>
+  </ul></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model"><span class="header-section-number">4</span> Model</a>
+  <ul class="collapse">
+  <li><a href="#pressure" id="toc-pressure" class="nav-link" data-scroll-target="#pressure"><span class="header-section-number">4.1</span> Pressure</a></li>
+  <li><a href="#temperature" id="toc-temperature" class="nav-link" data-scroll-target="#temperature"><span class="header-section-number">4.2</span> Temperature</a></li>
+  <li><a href="#discharge-coefficient" id="toc-discharge-coefficient" class="nav-link" data-scroll-target="#discharge-coefficient"><span class="header-section-number">4.3</span> Discharge Coefficient</a></li>
+  </ul></li>
+  <li><a href="#theory" id="toc-theory" class="nav-link" data-scroll-target="#theory"><span class="header-section-number">5</span> Theory</a>
+  <ul class="collapse">
+  <li><a href="#ideal-gas-law" id="toc-ideal-gas-law" class="nav-link" data-scroll-target="#ideal-gas-law"><span class="header-section-number">5.1</span> Ideal Gas Law</a></li>
+  <li><a href="#bernoullis-principle" id="toc-bernoullis-principle" class="nav-link" data-scroll-target="#bernoullis-principle"><span class="header-section-number">5.2</span> Bernoulli’s Principle</a></li>
+  <li><a href="#continuity-function" id="toc-continuity-function" class="nav-link" data-scroll-target="#continuity-function"><span class="header-section-number">5.3</span> Continuity Function</a></li>
+  <li><a href="#properties-of-fluid" id="toc-properties-of-fluid" class="nav-link" data-scroll-target="#properties-of-fluid"><span class="header-section-number">5.4</span> Properties of Fluid</a></li>
+  <li><a href="#mass-flow-rate" id="toc-mass-flow-rate" class="nav-link" data-scroll-target="#mass-flow-rate"><span class="header-section-number">5.5</span> Mass Flow Rate</a></li>
+  </ul></li>
+  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method"><span class="header-section-number">6</span> Method</a>
+  <ul class="collapse">
+  <li><a href="#model-1-specific-solution-of-air" id="toc-model-1-specific-solution-of-air" class="nav-link" data-scroll-target="#model-1-specific-solution-of-air"><span class="header-section-number">6.1</span> Model 1 — Specific Solution of Air</a></li>
+  <li><a href="#model-2-general-isentropic-nozzle-solution" id="toc-model-2-general-isentropic-nozzle-solution" class="nav-link" data-scroll-target="#model-2-general-isentropic-nozzle-solution"><span class="header-section-number">6.2</span> Model 2 — General Isentropic-Nozzle Solution</a></li>
+  <li><a href="#discussion-of-discharge-coefficient" id="toc-discussion-of-discharge-coefficient" class="nav-link" data-scroll-target="#discussion-of-discharge-coefficient"><span class="header-section-number">6.3</span> Discussion of Discharge Coefficient</a></li>
+  </ul></li>
+  <li><a href="#results-and-interpretation" id="toc-results-and-interpretation" class="nav-link" data-scroll-target="#results-and-interpretation"><span class="header-section-number">7</span> Results and Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#diameter-and-time-relationship" id="toc-diameter-and-time-relationship" class="nav-link" data-scroll-target="#diameter-and-time-relationship"><span class="header-section-number">7.1</span> Diameter and Time Relationship</a></li>
+  <li><a href="#pressure-over-time" id="toc-pressure-over-time" class="nav-link" data-scroll-target="#pressure-over-time"><span class="header-section-number">7.2</span> Pressure Over Time</a></li>
+  <li><a href="#discharge-coefficient-and-time" id="toc-discharge-coefficient-and-time" class="nav-link" data-scroll-target="#discharge-coefficient-and-time"><span class="header-section-number">7.3</span> Discharge Coefficient and Time</a></li>
+  </ul></li>
+  <li><a href="#discussion-and-conclusion" id="toc-discussion-and-conclusion" class="nav-link" data-scroll-target="#discussion-and-conclusion"><span class="header-section-number">8</span> Discussion and Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#comparing-model-1-and-model-2" id="toc-comparing-model-1-and-model-2" class="nav-link" data-scroll-target="#comparing-model-1-and-model-2"><span class="header-section-number">8.1</span> Comparing Model 1 and Model 2</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">8.2</span> Limitations</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">8.3</span> Conclusion</a></li>
+  </ul></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">9</span> Appendix</a>
+  <ul class="collapse">
+  <li><a href="#mathematica-code" id="toc-mathematica-code" class="nav-link" data-scroll-target="#mathematica-code"><span class="header-section-number">9.1</span> Mathematica Code</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Problem A: Space Station Air Evacuation Time</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 28, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This paper was written for the 2024 <a href="https://www.uphysicsc.com/">University Physics Competition</a>. The original document was prepared in LaTeX and has been adapted into Quarto for this website, so formatting differences may appear.</p>
+<p>For the best layout and formatting, please refer to the original PDF version.</p>
+<p><strong>PDF version:</strong> <a href="main.pdf">Download</a></p>
+</div>
+</div>
+<section id="abstract" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="abstract"><span class="header-section-number">1</span> Abstract</h2>
+<p>In this paper, we explore the behavior of a space station struck with a small meteoroid as air leaks out through the hole. The space station is a cylindrical tube with a volume of about 630 cubic meters, with a hole in the center of one end. The main question is to find how long it will take for the atmosphere inside the station to reduce from 1 to 0.3 atmospheres for various hole diameters. Because the hole is small, airflow is restricted by how much it can compress to squeeze through. The pressure inside the station also decreases as air leaks out, limiting the airflow even more. We found a good formula that links these factors; we figured out how long it would take for any specific hole diameter. In order to solve this, though, we need to include a <span class="math inline">\(Cd\)</span> constant, which varies based on hole size and shape. After finding that, we plug it into our model and find that for a hole with a diameter of 1 centimeter, the atmosphere is reduced to 0.3 in 10 hours and 15 minutes. It took quite a long time, but considering the size of the hole and the sheer volume of air, it makes sense. Looking at other sized holes, we can see that as the diameter increases, the time to 0.3 atmospheres decreases dramatically, with 2 centimeters reaching 0.3 at 2 hours and 33 minutes. There is a large difference of only 1 centimeter. No matter what, having a hole in your space station is certainly serious, but not immediately life-threatening. It is essential to locate and repair the breach within the next few hours before it is too late.</p>
+</section>
+<section id="notations-used" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="notations-used"><span class="header-section-number">2</span> Notations Used</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Numerical Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(t\)</span></td>
+<td>Time</td>
+<td><span class="math inline">\(-s\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\rho_0\)</span></td>
+<td>Initial Density Inside</td>
+<td><span class="math inline">\(1.2 kg/ m^3\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\rho\)</span></td>
+<td>Actual Density Inside</td>
+<td><span class="math inline">\(-kg/ m^3\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(P_0\)</span></td>
+<td>Initial Pressure Inside</td>
+<td><span class="math inline">\(101.3 kPa\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(P\)</span></td>
+<td>Actual Pressure Inside</td>
+<td><span class="math inline">\(-kPa\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(m_0\)</span></td>
+<td>Initial Mass of Air Inside</td>
+<td><span class="math inline">\(948.4kg\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(m\)</span></td>
+<td>Actual Mass of Air Inside</td>
+<td><span class="math inline">\(-kg\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(T\)</span></td>
+<td>Temperature Inside</td>
+<td><span class="math inline">\(-K\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(V\)</span></td>
+<td>Volume of Spaceship</td>
+<td><span class="math inline">\(790.4 m^3\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A\)</span></td>
+<td>Area of Hole</td>
+<td><span class="math inline">\(-m^2\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(M\)</span></td>
+<td>Mach Number</td>
+<td>- dimensionless</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_d\)</span></td>
+<td>Discharge Coefficient</td>
+<td>- dimensionless</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(M_o\)</span></td>
+<td>Molar Mass of Air</td>
+<td><span class="math inline">\(0.029kg/mol\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(R\)</span></td>
+<td>Molar Gas Constant</td>
+<td><span class="math inline">\(8.3 J/mol\cdot k\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(c\)</span></td>
+<td>Speed of Sound</td>
+<td><span class="math inline">\(0.34 km/s\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_p\)</span></td>
+<td>Specific Heat at Constant Pressure</td>
+<td><span class="math inline">\(-J/kg\cdot K\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_v\)</span></td>
+<td>Specific Heat at Constant Volume</td>
+<td><span class="math inline">\(-J/kg\cdot K\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(v\)</span></td>
+<td>Speed of Flow in (near) the Hole</td>
+<td><span class="math inline">\(-m/s\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(n\)</span></td>
+<td>Amount of Molecules</td>
+<td>- dimensionless</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(k_B\)</span></td>
+<td>Boltzmann constant</td>
+<td><span class="math inline">\(1.4\cdot 10^{-23} m^2kg/s^2K\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>In the table above, <span class="math inline">\(\rho_0\)</span>, <span class="math inline">\(M_o\)</span>, <span class="math inline">\(R\)</span>, <span class="math inline">\(c\)</span> and <span class="math inline">\(k_B\)</span> are acquired from basic scientific observation.</p>
+<p><span class="math inline">\(P_0\)</span>, <span class="math inline">\(M_0\)</span> and <span class="math inline">\(V\)</span> are calculated using basic physics equations. We will not dig into the measurement of those constants.</p>
+</section>
+<section id="introduction" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3</span> Introduction</h2>
+<section id="background" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="background"><span class="header-section-number">3.1</span> Background</h3>
+<p>Orbital debris is one of the threatening factors in spacecraft, satellites, and astronauts. Colliding with a meteoroid may damage spacecraft and even cause a breakdown. Even a one-centimeter paint lick has the same power as a five hundred-and-fifty pounds object with sixty miles per hour on Earth.</p>
+<p><img src="spaceship.jpg" class="img-fluid" style="width:55.0%" alt="Picture of Space Shuttle Atlantis"></p>
+<p><em>Figure: Picture of Space Shuttle Atlantis.</em></p>
+<p>In the event of a meteoroid impact, a small hole in the hull is created, and air begins to leak out. In this study, we aim to estimate the time required for significant pressure loss and investigate the impact of varying hole diameters on the air leakage rate. These idealized flow systems serve as crucial models for evaluating and comparing real-world flow scenarios, offering solutions with sufficient accuracy for numerous engineering applications—our investigation centers on isentropic flow. Isentropic flow is a reversible adiabatic process where no heat transfer occurs, and entropy remains constant . The flow closely approximates isentropic conditions when the opening is smooth and frictionless. Understanding these patterns helps astronauts escape and estimate the available time before critical pressure levels are reached during an emergency.</p>
+</section>
+<section id="problem-restatement" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="problem-restatement"><span class="header-section-number">3.2</span> Problem Restatement</h3>
+<p>The exact wording of the problem is as follows:</p>
+<blockquote class="blockquote">
+<p>“A space station is approximately shaped like a cylinder with an interior length of 50 meters and a diameter of 4 meters. The air inside the space station is at a temperature of 20 C and a pressure of 1 atmosphere (101.3 kPa). A meteoroid makes a hole 1 cm in diameter in the center of one end of the space station. How much time would it take until the air pressure in the space station was only 0.3 atmosphere? How would this time be different for holes of different diameters?”</p>
+</blockquote>
+<p>To answer this problem, we have to provide the time it would take for the pressure inside to reduce from 1 to 0.3 atmospheres, with holes of differing diameters.</p>
+<p>The key points we need to consider are how pressure impacts the rate at which air escapes, turbulence from air escaping, and how much the size of the hole restricts airflow.</p>
+</section>
+</section>
+<section id="model" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="model"><span class="header-section-number">4</span> Model</h2>
+<p>There are many differences between outer space and inside the station, which can affect the air leak differently. However, we know that the movement of air, which is some particles with mass, is caused by some forces. The air pressure is the only variable related to internal force in our spaceship system. So, the <span class="math inline">\(\Delta P\)</span> is the only thing we are truly concerned with; anything else does not truly matter as long as they do not affect our measurement for <span class="math inline">\(\Delta P\)</span>. We will explain what we assumed about <span class="math inline">\(P\)</span> and <span class="math inline">\(T\)</span> below.</p>
+<p>To simplify the model, a discharge coefficient (( C_d )) is included to evaluate all other fluid dynamic effects like compression and turbulence. This coefficient allows us to account for the complex interactions within the system without adding unnecessary complexity to the analysis.</p>
+<p>Several basic assumptions are made to streamline the model. We assume that the shape of the spaceship is not changing, the inside of the spaceship is empty, and the air has the same composition as the near-surface atmosphere.</p>
+<p><embed src="cylinder-2.pdf" class="img-fluid" style="width:70.0%" alt="Graph of Spaceship (The Red Dot Represents the Hole)"></p>
+<p><em>Figure: Graph of Spaceship (The Red Dot Represents the Hole).</em></p>
+<p>The approach taken involves applying principles from the ideal gas law and using the Bernoulli equation tailored for compressible fluids. By building the model around these principles, we establish a system that estimates how air pressure and temperature affect the velocity and behavior of the airflow during leakage.</p>
+<section id="pressure" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="pressure"><span class="header-section-number">4.1</span> Pressure</h3>
+<p>We assume the pressure outside the spaceship is close to 0, as outer space has an extremely sparse particle presence, resulting in almost no external pressure. This allows us to focus solely on the internal conditions of the spacecraft, where the gas behaves according to the ideal gas law. By treating the outer environment as a perfect vacuum, we ensure that any heat transfer or energy exchange from the inside to the outside is minimal and can be disregarded for modeling purposes.</p>
+</section>
+<section id="temperature" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="temperature"><span class="header-section-number">4.2</span> Temperature</h3>
+<section id="isothermal-shell" class="level4" data-number="4.2.1">
+<h4 data-number="4.2.1" class="anchored" data-anchor-id="isothermal-shell"><span class="header-section-number">4.2.1</span> Isothermal Shell</h4>
+<p>For this model, we assume that the spaceship’s shell is isothermal, meaning it maintains a constant and uniform temperature throughout its structure. This simplification is justified in focusing on the behavior of air leakage and its impact on internal conditions without complicating the analysis with temperature gradients across the shell.</p>
+</section>
+<section id="effect-of-change-in-orbital-and-height" class="level4" data-number="4.2.2">
+<h4 data-number="4.2.2" class="anchored" data-anchor-id="effect-of-change-in-orbital-and-height"><span class="header-section-number">4.2.2</span> Effect of Change in Orbital and Height</h4>
+<p>Because the station remains in the same orbit, the height does not change. Based on the equation for universal gravitation</p>
+<p>[ F=G ]</p>
+<p>where <span class="math inline">\(F\)</span> is the gravitational force acting between Earth and the space station, <span class="math inline">\(m_1\)</span> is the mass of Earth <span class="math inline">\(m_2\)</span> is that of the space station, and <span class="math inline">\(r\)</span> is the distance between these two, and Newton’s second law</p>
+<p>[ F=ma ]</p>
+<p>where <span class="math inline">\(m\)</span> is <span class="math inline">\(m_2\)</span> in this case, and <span class="math inline">\(a\)</span> is centripetal acceleration, we know that since <span class="math inline">\(r\)</span> does not change, the acceleration of the space station does not change. The relationship between centripetal acceleration and tangential velocity is:</p>
+<p>[ a= ]</p>
+<p>Because the centripetal acceleration does not change, the tangential velocity remains the same. As kinetic energy is</p>
+<p>[ K=mv^2 ]</p>
+<p>So the kinetic energy remains the same. The average kinetic energy of a monatomic ideal gas is</p>
+<p>[ K=k_B T ]</p>
+<p><span class="math inline">\(k_B\)</span> is a constant, and <span class="math inline">\(K\)</span> does not change. Therefore temperature does not change due to no changes in orbitals and height.</p>
+</section>
+<section id="change-in-temperature-inside-spaceship" class="level4" data-number="4.2.3">
+<h4 data-number="4.2.3" class="anchored" data-anchor-id="change-in-temperature-inside-spaceship"><span class="header-section-number">4.2.3</span> Change in Temperature Inside Spaceship</h4>
+<p>Additionally, we consider that the external environment, outer space, is a perfect vacuum at <span class="math inline">\(0K\)</span>, implying that there are no particles or energy exchanges from outside entering the spaceship. Since the temperature measures average kinetic energy, the number of molecules decreased, but the average kinetic energy was not loss.</p>
+<p><img src="temp.png" class="img-fluid" style="width:80.0%" alt="Illustration of Average Kinetic Energy and Total Molecules Over Time"></p>
+<p><em>Figure: Illustration of Average Kinetic Energy and Total Molecules Over Time.</em></p>
+<p>The graph is not drawn to scale, nor the curve is in the right shape, but it shows clearly that the internal temperature of the spaceship does not decrease due to air loss.</p>
+</section>
+</section>
+<section id="discharge-coefficient" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="discharge-coefficient"><span class="header-section-number">4.3</span> Discharge Coefficient</h3>
+<p>The Discharge Coefficient (<span class="math inline">\(C_d\)</span>) is a dimensionless number representing the ratio of actual to theoretical flow rates through an orifice or nozzle. Physicists have studied this topic for many decades but still need a conclusion. For common situations, it normally varies between 0.6 to 1.0. In our general model of leaking air, we can assume <span class="math inline">\(C_d\)</span> to be 0.9.</p>
+<p>We will explore more about <span class="math inline">\(C_d\)</span> and its effect in the <strong>Method</strong> section.</p>
+</section>
+</section>
+<section id="theory" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="theory"><span class="header-section-number">5</span> Theory</h2>
+<p>We use the basic laws of physics to derive equations useful to our specific situation.</p>
+<section id="ideal-gas-law" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="ideal-gas-law"><span class="header-section-number">5.1</span> Ideal Gas Law</h3>
+<p>We consider the gas inside and outside the space station as ideal gas to make a good approximation. According to the ideal gas law, the equation is:</p>
+<p>[ PV=nRT ]</p>
+<p>Because the amount of substance of gas is equal to the mass of the gas <span class="math inline">\(m\)</span> divided by molar mass <span class="math inline">\(M\)</span>, which is <span class="math inline">\(n=\frac{m}{M}\)</span>. We then substitute it into <span class="math inline">\(PV=nRT\)</span>:</p>
+<p>[ PV= ]</p>
+<p>Rewritten, we get:</p>
+<p>[ m= ]</p>
+<p>Leading to:</p>
+<p>[ == ]</p>
+</section>
+<section id="bernoullis-principle" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="bernoullis-principle"><span class="header-section-number">5.2</span> Bernoulli’s Principle</h3>
+<p>For compressible flow, Bernoulli’s principle must be modified to consider changes in fluid density. The standard form of Bernoulli’s equation for incompressible flow does not apply directly, as density (()) is not constant. For compressible flow, energy conservation can still be used, but it involves more advanced equations that consider changes in internal energy and pressure-volume work:</p>
+<p>[ + v^2 + h = ]</p>
+<p>Where (h) includes the internal energy term for compressible flow.</p>
+</section>
+<section id="continuity-function" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="continuity-function"><span class="header-section-number">5.3</span> Continuity Function</h3>
+<p>For compressible fluids, the continuity equation takes into account the changes in density:</p>
+<p>[ = 0 ]</p>
+<p>This equation states that the mass flow rate (A v) must remain constant across the flow. In a steady flow, this simplifies to:</p>
+<p>[ _1 A_1 v_1 = _2 A_2 v_2 ]</p>
+</section>
+<section id="properties-of-fluid" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="properties-of-fluid"><span class="header-section-number">5.4</span> Properties of Fluid</h3>
+<p>According to Saad, 1985, fluids deform continuously when subjected to shearing forces. A fluid that shows a marked change of density with a change in pressure is compressible; one that shows a negligible change of density with a change in pressure is incompressible. The change of density of a single-component, single-phase fluid as a function of temperature and pressure may be expressed as:</p>
+<p>[ d= ( )_p dT + ( )_T dp ]</p>
+<p>When divided by <span class="math inline">\(\rho\)</span>, this becomes:</p>
+<p>[ = ( )_p dT + ( )_T dp ]</p>
+<p>Similarly, the relative change in volume can be expressed as:</p>
+<p>[ = ( )_p dT + ( )_T dp ]</p>
+<p>There are further studies on the compressibility of fluid flow. For our model, these equations are enough.</p>
+</section>
+<section id="mass-flow-rate" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="mass-flow-rate"><span class="header-section-number">5.5</span> Mass Flow Rate</h3>
+<p>In physics and engineering, the mass flow rate is the rate at which the mass of a substance changes over time. It can be expressed as:</p>
+<p>[ = _{t } = ]</p>
+<p>Now we introduce the concept of the Adiabatic Index (<span class="math inline">\(\gamma\)</span>). It determines how pressure, temperature, and volume relate to one another in an isentropic process. In this paper, <span class="math inline">\(C\)</span> refers to the relevant specific heat for air.</p>
+<p>[ = ]</p>
+<p>When temperature and pressure changes are not large, values of the specific heats (and hence their ratio <span class="math inline">\(\gamma\)</span>) are assumed to be constant. For air under moderate pressure and temperature:</p>
+<p>[ C_p = 1.0035 , , C_v = 0.7165 , ]</p>
+<p>Therefore:</p>
+<p>[ = 1.4 ]</p>
+<p>The mass flow rate <span class="math inline">\(\frac{dm}{dt}\)</span> through a hole can be expressed as:</p>
+<p>[ = C_d A P ]</p>
+<p>This expression for mass flow rate can be simplified by grouping constants together. For air, the term:</p>
+<p>[ ( )^{} ]</p>
+<p>can be approximated to a simpler form, given as:</p>
+<p>[ ]</p>
+<p>Therefore, we arrive at:</p>
+<p>[ = -C_d A P . ]</p>
+</section>
+</section>
+<section id="method" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="method"><span class="header-section-number">6</span> Method</h2>
+<section id="model-1-specific-solution-of-air" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="model-1-specific-solution-of-air"><span class="header-section-number">6.1</span> Model 1 — Specific Solution of Air</h3>
+<p>To derive a differential equation for the relationship between mass and pressure over time in a space station experiencing air leakage due to meteoroid damage, we use the ideal gas law and principles of fluid dynamics.</p>
+<p>According to the ideal gas law modification, we have:</p>
+<p>[ m = ]</p>
+<p>This equation relates the mass <span class="math inline">\(m\)</span> of air inside the space station to the pressure <span class="math inline">\(P(t)\)</span>.</p>
+<p>As air escapes through the hole, the mass <span class="math inline">\(m\)</span> inside the space station decreases over time. The mass flow rate through a hole:</p>
+<p>[ = -C_d A P ]</p>
+<p>The negative sign indicates that the mass inside the space station is decreasing over time.</p>
+<p>Substitute <span class="math inline">\(m = \frac{PVM}{RT}\)</span> into the differential equation for mass loss:</p>
+<p>[ () = -C_d A P ]</p>
+<p>We can then simplify this to:</p>
+<p>[ = -C_d A P ]</p>
+<p>Rearrange to isolate <span class="math inline">\(\frac{dP}{dt}\)</span>:</p>
+<p>[ = - P ]</p>
+<p>The differential equation is now:</p>
+<p>[ = -kP ]</p>
+<p>where <span class="math inline">\(k = \frac{C_d A}{V} \sqrt{\frac{RT}{M}}\)</span> is a constant.</p>
+<p>Separating variables and integrating:</p>
+<p>[ , dP = -k , dt ]</p>
+<p>Solving the integrals gives:</p>
+<p>[ P = -kt + C ]</p>
+<p>Exponentiate both sides and solve for <span class="math inline">\(P\)</span>:</p>
+<p>[ P(t) = P_0 e^{-kt} ]</p>
+<p>Now, we can find the time <span class="math inline">\(t\)</span> it takes for the pressure to drop to 0.3 atmospheres by setting <span class="math inline">\(P(t) = 0.3P_0\)</span>:</p>
+<p>[ 0.3P_0 = P_0 e^{-kt} ]</p>
+<p>Simplifying:</p>
+<p>[ 0.3 = e^{-kt} ]</p>
+<p>Taking the natural logarithm of both sides:</p>
+<p>[ = -kt ]</p>
+<p>Solving for <span class="math inline">\(t\)</span>:</p>
+<p>[ t = - ]</p>
+<p>Substitute <span class="math inline">\(k = \frac{C_d A}{V} \sqrt{\frac{RT}{M}}\)</span> to find <span class="math inline">\(t\)</span>:</p>
+<p>[ t = - ]</p>
+</section>
+<section id="model-2-general-isentropic-nozzle-solution" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="model-2-general-isentropic-nozzle-solution"><span class="header-section-number">6.2</span> Model 2 — General Isentropic-Nozzle Solution</h3>
+<p>In a real-world situation, the behavior of air around the hole would be different significantly from place to place. In this model, we treat the hole as a “nozzle”. Furthermore, we do not assume <em>temperature and pressure changes are not large</em> anymore. Instead, we take the adiabatic index (<span class="math inline">\(\gamma\)</span>) into consideration.</p>
+<p>The flow properties of perfect gas with constant specific heat can be related to Mach Number (<span class="math inline">\(M\)</span>).</p>
+<p>[ M= ]</p>
+<p>Static temperature and stagnation temperature are related as follows:</p>
+<p>[ = 1 + M^2 ]</p>
+<p>When perfect gas flows isentropically, pressure and density are related to the temperature in the following ways, where <span class="math inline">\(P_{out}\)</span> and <span class="math inline">\(\rho_{out}\)</span> represent the pressure and density of space:</p>
+<p>[ =()^ ]</p>
+<p>and</p>
+<p>[ =()^ ]</p>
+<p>Combine these relationships to get:</p>
+<p>[ = ( 1 + M^2 )^{/(- 1)} ]</p>
+<p>and</p>
+<p>[ = ( 1 + M^2 )^{1/(- 1)} ]</p>
+<p>And <span class="math inline">\(M\)</span> can be derived:</p>
+<p>[ M= ]</p>
+<p>We realize that <span class="math inline">\(M\)</span> is related to the pressure difference. In our case, the pressure of outer space is 0, which would lead our calculation to a mathematical failure. To avoid this, we examine what is the type of flow in and near the hole.</p>
+<p>To identify whether the flow is subsonic or choked (sonic), we compare the actual pressure ratio to the critical pressure ratio for choked flow.</p>
+<p>For air (with <span class="math inline">\(\gamma = 1.4\)</span>):</p>
+<p>[ ( )_{} = ( )^{/(- 1)} ]</p>
+<p>The actual pressure ratio is 0, so choked flow occurs and it is reasonable to proceed with <span class="math inline">\(M=1\)</span>.</p>
+<p>Looking back to our spaceship, the mass flow rate per unit area (mass flux) for the flow, <span class="math inline">\(G\)</span> is given by:</p>
+<p>[ G==v ]</p>
+<p>For perfect gas:</p>
+<p>[ = ]</p>
+<p>and</p>
+<p>[ c= ]</p>
+<p>Therefore:</p>
+<p>[ = v M = P () ]</p>
+<p>Applying algebra (as in the original writeup), we land at:</p>
+<p>[ =m’(t) = -C_d A P(t) ( )^{} ]</p>
+<p>and</p>
+<p>[ P(t)= ]</p>
+<p>Then we simplify it into:</p>
+[ {
+<span class="math display">\[\begin{array}{ll}
+m'(t) = -AkP(t), &amp; k = C_d\sqrt{\gamma R T_0}\left( \frac{2}{\gamma + 1} \right)^{\frac{\gamma + 1}{2(\gamma - 1)}} \\
+P(t)=\omega m(t), &amp; \omega=\frac{T}{MV}
+\end{array}\]</span>
+<p>. ]</p>
+<p>If we are looking for the time when the pressure drops to 30% of its initial value, set ( P(t) = 0.3 P_0 ):</p>
+<p>[ t = - ]</p>
+<p>Plugging in constants gives:</p>
+<p>[ t=- ]</p>
+</section>
+<section id="discussion-of-discharge-coefficient" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="discussion-of-discharge-coefficient"><span class="header-section-number">6.3</span> Discussion of Discharge Coefficient</h3>
+<p>From our resulting equations, we could see that <span class="math inline">\(C_d\)</span> has a huge impact on our computation of <span class="math inline">\(P(t)\)</span>. There are lots of potential factors for <span class="math inline">\(C_d\)</span> in our case. We will explore three main properties that would increase the value of <span class="math inline">\(C_d\)</span> significantly.</p>
+<section id="surface-roughness" class="level4" data-number="6.3.1">
+<h4 data-number="6.3.1" class="anchored" data-anchor-id="surface-roughness"><span class="header-section-number">6.3.1</span> Surface Roughness</h4>
+<p>The perimeter of the hole caused by the impact is rough. Physicists have long been interested in this property, and there is extensive research on how surface roughness affects the drag coefficient. We will not dig into the details, but it is a common conclusion that surface roughness can significantly influence the airflow behavior, generally increasing <span class="math inline">\(C_d\)</span>.</p>
+<p><img src="SpceshipOutlayer.jpg" class="img-fluid" style="width:55.0%" alt="Close Up Picture of Space Shuttle Atlantis"></p>
+<p><em>Figure: Close Up Picture of Space Shuttle Atlantis.</em></p>
+<p>The outer surface of a spacecraft is designed with multiple layers of specialized materials, including metals such as aluminium alloys, titanium, and thermal protection tiles made of carbon or ceramic. Due to the composite structure and the necessity for protective coatings, the surface could be more perfectly smooth; it often exhibits micro-roughness from manufacturing joints, thermal shielding overlaps, and wear over time. When a meteoroid or asteroid impact occurs, the resulting hole is irregularly shaped and inherits the roughness of these layered materials.</p>
+</section>
+<section id="flow-regime" class="level4" data-number="6.3.2">
+<h4 data-number="6.3.2" class="anchored" data-anchor-id="flow-regime"><span class="header-section-number">6.3.2</span> Flow Regime</h4>
+<p>The irregularity of the hole would promote a turbulent flow rather than a laminar flow.</p>
+<p>Laminar flow is characterized by orderly fluid motion with parallel layers and minimal energy loss, resulting in a lower <span class="math inline">\(C_d\)</span>. In contrast, turbulent flow is chaotic, with eddies and vortices forming, leading to higher energy dissipation and an increased <span class="math inline">\(C_d\)</span>.</p>
+<p>High-pressure differences and fast-moving air escaping from the spacecraft contribute to a higher Reynolds number (<span class="math inline">\(Re\)</span>), defined by:</p>
+<p>[ Re = ]</p>
+<p>where <span class="math inline">\(\rho\)</span> is the density of the air, <span class="math inline">\(v\)</span> is the velocity of the escaping air, <span class="math inline">\(D\)</span> is a characteristic length, and <span class="math inline">\(\mu\)</span> is the dynamic viscosity of the air.</p>
+<p>Some research has been done to evaluate the relationship between <span class="math inline">\(C_d\)</span> and <span class="math inline">\(Re\)</span>. Generally, <span class="math inline">\(C_d\)</span> increases with the increase of <span class="math inline">\(Re\)</span>.</p>
+<p><img src="Re1.jpg" class="img-fluid" style="width:48.0%"> <img src="Re2.jpg" class="img-fluid" style="width:48.0%"></p>
+<p><em>Figure: Relationship Between <span class="math inline">\(C_d\)</span> and <span class="math inline">\(\sqrt{Re}\)</span> .</em></p>
+</section>
+<section id="angle-of-attack-irregular-entry-points" class="level4" data-number="6.3.3">
+<h4 data-number="6.3.3" class="anchored" data-anchor-id="angle-of-attack-irregular-entry-points"><span class="header-section-number">6.3.3</span> Angle of Attack (Irregular Entry Points)</h4>
+<p>The varied edges of the impact site can change how the air flows through the hole. Irregular entry and exit angles increase drag, making the air leakage less predictable and potentially faster.</p>
+<p><img src="Orifices.jpg" class="img-fluid" style="width:70.0%" alt="Three Type of Orifice"></p>
+<p><em>Figure: Three Type of Orifice .</em></p>
+</section>
+</section>
+</section>
+<section id="results-and-interpretation" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="results-and-interpretation"><span class="header-section-number">7</span> Results and Interpretation</h2>
+<section id="diameter-and-time-relationship" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="diameter-and-time-relationship"><span class="header-section-number">7.1</span> Diameter and Time Relationship</h3>
+<p>For this instance, we estimated <span class="math inline">\(C_d = 0.9\)</span>, and adjusting this value does not change the <em>relative</em> position of the data points. By running different values of hole diameter through our model, we can graph how different values affect the time it takes to reach 0.3 atmospheres.</p>
+<p><img src="Graphs/TDCchart.png" class="img-fluid" style="width:90.0%" alt="Time to 0.3 atm vs diameter"></p>
+<p><em>Figure: Time it takes to reach 0.3 Atmospheres for different hole diameters.</em></p>
+<p>The curve decays exponentially concerning the hole diameter, and holes smaller than 1 cm can take <em>thousands</em> of hours to decompress, dominating the curve. Instead, it is more helpful to chop off values that are under 1 cm.</p>
+<p><img src="Graphs/TDCchartCut.png" class="img-fluid" style="width:90.0%" alt="Time to 0.3 atm vs diameter (cut)"></p>
+<p><em>Figure: Same graph but without values under 1 cm.</em></p>
+<p>Here are some key points:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Diameter</th>
+<th>Time to 0.3 Atmospheres</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 cm</td>
+<td>10.25 Hours</td>
+</tr>
+<tr class="even">
+<td>3 cm</td>
+<td>1.14 Hours</td>
+</tr>
+<tr class="odd">
+<td>5 cm</td>
+<td>24.6 Minutes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pressure-over-time" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="pressure-over-time"><span class="header-section-number">7.2</span> Pressure Over Time</h3>
+<p><img src="Graphs/PressureTime1cmC9.png" class="img-fluid" style="width:32.0%"> <img src="Graphs/PressureTime2cmC9.png" class="img-fluid" style="width:32.0%"> <img src="Graphs/PressureTime3cmC9.png" class="img-fluid" style="width:32.0%"></p>
+<p><em>Figure: Pressure vs time for 1 cm, 2 cm, 3 cm holes.</em></p>
+<p>As the hole diameter increases, the rate at which air escapes the station increases dramatically.</p>
+</section>
+<section id="discharge-coefficient-and-time" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="discharge-coefficient-and-time"><span class="header-section-number">7.3</span> Discharge Coefficient and Time</h3>
+<p><img src="Graphs/DiameterTimeC7.png" class="img-fluid" style="width:32.0%"> <img src="Graphs/DiameterTimeC8.png" class="img-fluid" style="width:32.0%"> <img src="Graphs/DiameterTimeC9.png" class="img-fluid" style="width:32.0%"></p>
+<p><img src="Graphs/PressureTime1cmC7.png" class="img-fluid" style="width:32.0%"> <img src="Graphs/PressureTime1cmC8.png" class="img-fluid" style="width:32.0%"> <img src="Graphs/PressureTime1cmC9.png" class="img-fluid" style="width:32.0%"></p>
+<p><em>Figure: Comparing different <span class="math inline">\(C_d\)</span>.</em></p>
+<p>It is hard to see with the naked eye but there is a difference. For three graphs of time to 0.3 atm, if the hole diameter increases from 1 cm to 1.5 cm, the time in the graph with <span class="math inline">\(C_d=0.7\)</span> decreases by approximately 7.2 hrs, higher than that of <span class="math inline">\(C_d=0.8\)</span> and <span class="math inline">\(C_d=0.9\)</span>, which are approximately 6.6 hrs and 5.5 hrs respectively. Similarly, from the graphs of pressure for a 1 cm diameter hole, a lower <span class="math inline">\(C_d\)</span> results in a quicker decrease in pressure. A lower <span class="math inline">\(C_d\)</span> makes the curve steeper, meaning more pressure is lost in the first few hours.</p>
+</section>
+</section>
+<section id="discussion-and-conclusion" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="discussion-and-conclusion"><span class="header-section-number">8</span> Discussion and Conclusion</h2>
+<section id="comparing-model-1-and-model-2" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="comparing-model-1-and-model-2"><span class="header-section-number">8.1</span> Comparing Model 1 and Model 2</h3>
+<p>If we take a close look at the two expressions, we will immediately notice that they share a lot of similarities:</p>
+<p>[ t = - ]</p>
+<p>[ t=- ]</p>
+<p>The only difference is an additional term:</p>
+<p>[ ]</p>
+<p>We hypothesize that the actual function describing the leaking air is influenced by the specific heat of the fluid. However, further research is needed to verify this hypothesis.</p>
+</section>
+<section id="limitations" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="limitations"><span class="header-section-number">8.2</span> Limitations</h3>
+<section id="non-zero-temperature-and-pressure" class="level4" data-number="8.2.1">
+<h4 data-number="8.2.1" class="anchored" data-anchor-id="non-zero-temperature-and-pressure"><span class="header-section-number">8.2.1</span> Non-Zero Temperature and Pressure</h4>
+<p><img src="basic-layers-of-the-atmosphere.jpg" class="img-fluid" style="width:48.0%"> <img src="lower-layers-of-the-atmosphere.jpg" class="img-fluid" style="width:48.0%"></p>
+<p><em>Figure: NOAA atmosphere layer figures .</em></p>
+<p>We assume the space station is the International Space Station (ISS). The average altitude of its orbit is between 370 kilometer and 460 kilometer. Between 85 kilometers and 600 kilometers lies the thermosphere, where the temperature increases sharply. So, the temperature is affected by the altitude of the space orbit. However, during the modeling, we do not consider temperature changes.</p>
+</section>
+<section id="non-isothermal" class="level4" data-number="8.2.2">
+<h4 data-number="8.2.2" class="anchored" data-anchor-id="non-isothermal"><span class="header-section-number">8.2.2</span> Non-Isothermal</h4>
+<p>The leakage process in a real-world scenario cannot be considered purely adiabatic because some heat loss occurs due to heat transfer inside airflow.</p>
+<p>Additionally, the outer shell of the spaceship is not perfectly isothermal. Any object with mass will conduct and transfer heat to some extent, influencing the overall temperature distribution. In practice, spaceships are equipped with various heating and thermal regulation systems to maintain a habitable environment for astronauts.</p>
+</section>
+<section id="non-zero-acceleration" class="level4" data-number="8.2.3">
+<h4 data-number="8.2.3" class="anchored" data-anchor-id="non-zero-acceleration"><span class="header-section-number">8.2.3</span> Non-Zero Acceleration</h4>
+<p><img src="Mars_Rescue.jpg" class="img-fluid" style="width:35.0%" alt="Watney uses air to fly in The Martian"></p>
+<p><em>Figure: Watney uses air to fly in space in the movie</em> The Martian <em>.</em></p>
+<p>The ejected airflow will impart a reactive force that accelerates the spaceship. This acceleration influences the distribution of air inside the spacecraft, potentially altering the pressure gradients.</p>
+</section>
+</section>
+<section id="conclusion" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8.3</span> Conclusion</h3>
+<p>At the end of the day, we found that it takes 10 hours and 15 minutes for the pressure to drop to 0.3 atmospheres, and an increase in the hole’s diameter leads to an exponential decrease in the time it takes.</p>
+<p>In a harsh environment like the vacuum of space, it is critically important that everything goes smoothly. With the level of technology we are using to reach the beyond, there are so many failure points, that it seems ridiculous to even try. And yet the human spirit cannot help but be curious, and reach out in spite of the dangers. In situations like the one this paper explores, the astronauts and engineers need as much information as humanly possible to overcome these never-before-seen challenges. By doing this paper, and this competition, we have gotten a glimpse into the real-world problems these people face, and earned a new appreciation for the incredible work that humanities best can provide.</p>
+<hr>
+<hr>
+</section>
+</section>
+<section id="appendix" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="appendix"><span class="header-section-number">9</span> Appendix</h2>
+<section id="mathematica-code" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="mathematica-code"><span class="header-section-number">9.1</span> Mathematica Code</h3>
+<p>``<code>wolfram ClearAll["Global</code>*“]</p>
+<p>A = 3.14<em>0.01^2; Cd = 1; gamma = 1.4; R = 8.3144; V = 3.14</em>20*4^2; M = 0.0289; T = 20; p = 1000;</p>
+<p>k = A<em>Cd</em> Sqrt[gamma/(R*T)]<em>(2/(gamma + 1))^((gamma + 1)/(2</em>(gamma - 1)));</p>
+<p>m0 = 10; P0 = 1013; omega = P0/m0;</p>
+<p>Print[“k =”, k]; Print[“omega =”, omega];</p>
+<p>eq1 = D[m[t], t] == -A<em>k</em>P[t]; eq2 = P[t] == omega*m[t];</p>
+<p>initialConditions = {m[0] == m0, P[0] == P0};</p>
+<p>solution = DSolve[{eq1, eq2, initialConditions}, {m[t], P[t]}, t];</p>
+<p>PSol = P[t] /. solution[[1]];</p>
+<p>T30 = Solve[PSol == 0.3*P0, t]; T30Value = t /. T30[[1]];</p>
+<p>Plot[{PSol, 0.3<em>P0}, {t, 0, 2</em>T30Value}, PlotLegends -&gt; {“P(t)”, “30% of P(0)”}, PlotLabel -&gt; “Pressure P(t) Over Time”, AxesLabel -&gt; {“t”, “P(t)”}, PlotStyle -&gt; {Red, {Dashed, Blue}}, Epilog -&gt; {Dashed, Line[{{T30Value, 0}, {T30Value, 0.3*P0}}], Text[“T30”, {T30Value, 0}, {-1, 0}]}]</p>
+<p>Graphics3D[{LightBlue, GeometricTransformation[Cylinder[{{0, 0, 0}, {0, 50, 0}}, 2], RotationTransform[Pi/2, {0, 1, 0}] ], Red, PointSize[Large], Point[{0, 0, 0}] }, Boxed -&gt; False, Axes -&gt; True, AxesLabel -&gt; {“X”, “Y”, “Z”}, ViewPoint -&gt; {2, -1, 2}, Lighting -&gt; “Neutral”]</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/henryjiang\.me");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Henry Jiang</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

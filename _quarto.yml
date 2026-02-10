@@ -1,21 +1,30 @@
 project:
   type: website
+  output-dir: _site
 
 website:
-  title: "Website"
+  title: "Henry Jiang"
+  site-url: https://henryjiang.me
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-
+      - text: "Writing"
+        href: writing/writing.qmd
+    right:
+      - icon: github
+        href: https://github.com/Henry-cmd1
+        target: _blank
+      - icon: linkedin
+        href: https://linkedin.com/in/henryshihengjiang
+        target: _blank
+      - icon: instagram
+        href: https://instagram.com/henry_jiang11
+        target: _blank
+  page-footer:
+    center: |
+      © 2026 Henry Jiang  
 format:
   html:
-    theme:
-      - cosmo
-      - brand
-    css: styles.css
-    toc: true
-
-
+    theme: cosmo
+resources:
+    - CNAME
 

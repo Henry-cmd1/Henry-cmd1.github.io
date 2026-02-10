@@ -1,0 +1,13 @@
+plt.figure(figsize=(12, 6))
+
+plt.plot(time, average_energy_constant, color='blue', label='Average Kinetic Energy')
+plt.axhline(y=average_energy, color='blue', linestyle='--')
+
+plt.plot(time, total_molecules_decaying * 1e-23, color='green', label='Total Molecules (scaled)', linestyle='--')
+
+plt.xlabel('Time')
+plt.ylabel('')  # Remove labels on the y-axis
+plt.text(0.5, average_energy * 1.01, 'Constant Kinetic Energy \n(No Temperature Change)', color='blue')
+plt.grid(True)
+plt.legend()
+plt.show()

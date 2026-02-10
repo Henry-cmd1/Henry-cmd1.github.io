@@ -1,7 +1,11 @@
 ---
-title: "Website"
+title: "Home"
+date: last-modified
+date-format: "Last Update: MMM D, YYYY"
 ---
 
-This is a Quarto website.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+# This site is under construction
+
+
+[Homepage for this website on GitHub](https://github.com/Henry-cmd1/Henry-cmd1.github.io)

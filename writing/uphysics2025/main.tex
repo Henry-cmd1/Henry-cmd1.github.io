@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+
+\bibliographystyle{IEEEtran}
+\setlength{\parindent}{0pt} %Globally Remove Indentation
+
+\title{Problem A: Space Station Air Evacuation Time}
+\author{Team 461}
+\date{}
+
+\begin{document}
+\maketitle
+
+%Some useful tips I found:
+%\vspace{\baselineskip}   To add an empty line
+
+%This is the abstract
+\begin{abstract}
+In this paper, we explore the behavior of a space station struck with a small meteoroid as air leaks out through the hole. The space station is a cylindrical tube with a volume of about 630 cubic meters, with a hole in the center of one end. The main question is to find how long it will take for the atmosphere inside the station to reduce from 1 to 0.3 atmospheres for various hole diameters. Because the hole is small, airflow is restricted by how much it can compress to squeeze through. The pressure inside the station also decreases as air leaks out, limiting the airflow even more. We found a good formula that links these factors; we figured out how long it would take for any specific hole diameter. In order to solve this, though, we need to include a $Cd$ constant, which varies based on hole size and shape. After finding that, we plug it into our model and find that for a hole with a diameter of 1 centimeter, the atmosphere is reduced to 0.3 in 10 hours and 15 minutes. It took quite a long time, but considering the size of the hole and the sheer volume of air, it makes sense. Looking at other sized holes, we can see that as the diameter increases, the time to 0.3 atmospheres decreases dramatically, with 2 centimeters reaching 0.3 at 2 hours and 33 minutes. There is a large difference of only 1 centimeter. No matter what, having a hole in your space station is certainly serious, but not immediately life-threatening. It is essential to locate and repair the breach within the next few hours before it is too late.
+\end{abstract}
+
+\newpage
+%This is the Notation
+\input{body.tex}
+
+%This is the Reference
+
+\bibliography{sample}
+
+\end{document}

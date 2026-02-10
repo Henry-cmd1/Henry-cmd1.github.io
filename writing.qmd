@@ -1,0 +1,9 @@
+---
+title: "✍️ Writing"
+date: last-modified
+date-format: "Last Update: MMM D, YYYY"
+
+---
+
+
+

@@ -1,0 +1,9 @@
+---
+title: "✍️ Writing"
+listing:
+  contents: .
+  type: grid
+  sort: "date desc"
+  fields: [title, date, description]
+  categories: true
+---

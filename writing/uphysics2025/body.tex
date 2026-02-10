@@ -1,0 +1,721 @@
+\section{Notations Used}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Parameter} & \textbf{Meaning} & \textbf{Numerical Value} \\
+        \hline
+        $t$ & Time & $-s$ \\
+        $\rho_0$ & Initial Density Inside& $1.2 kg/ m^3$\\
+        $\rho$ & Actual Density Inside& $-kg/ m^3$  \\
+        $P_0$ & Initial Pressure Inside& $101.3 kPa$\\
+        $P$ & Actual Pressure Inside& $-kPa$ \\
+        $m_0$ & Initial Mass of Air Inside& $948.4kg$ \\
+        $m$ & Actual Mass of Air Inside& $-kg$ \\
+        $T$ & Temperature Inside&$-K$\\
+        $V$ & Volume of Spaceship& $790.4 m^3$ \\
+        $A$ & Area of Hole & $-m^2$ \\
+        $M$ & Mach Number& - dimensionless \\
+        $C_d$ & Discharge Coefficient& - dimensionless \\
+        $M_o$ & Molar Mass of Air& $0.029kg/mol$ \\
+        $R$ & Molar Gas Constant & $8.3 J/mol\cdot k$ \\
+        $c$ & Speed of Sound & $0.34 km/s$ \\
+        $C_p$ & Specific Heat at Constant Pressure & $-J/kg\cdot K$ \\
+        $C_v$ & Specific Heat at Constant Volume & $-J/kg\cdot K$ \\
+        $v$ & Speed of Flow in (near) the Hole & $-m/s$ \\
+        $n$ & Amount of Molecules & - dimensionless \\
+        $k_B$ & Boltzmann constant & $1.4\cdot 10^{-23} m^2kg/s^2K$ \\
+        
+        \hline
+    \end{tabular}
+\end{table}
+
+In the table above, $\rho_0$, $M_o$, $R$, $c$ and $k_B$ are acquired from basic scientific observation.
+\\\\$P_0$, $M_0$ and $V$ are calculated using basic physics equations. We will not dig into the measurement of those constants.
+
+%This is the Introduction
+\section{Introduction}
+
+\subsection{Background}
+Orbital debris is one of the threatening factors in spacecraft, satellites, and astronauts. Colliding with a meteoroid may damage spacecraft and even cause a breakdown. Even a one-centimeter paint lick has the same power as a five hundred-and-fifty pounds object with sixty miles per hour on Earth\cite{NASA2024}. \\
+
+\begin{wrapfigure}{r}{0.5\textwidth} 
+    \centering
+    \includegraphics[width=\linewidth]{spaceship.jpg} 
+    \caption{Picture of Space Shuttle Atlantis\cite{KennedySpaceCenter-2024}}
+\end{wrapfigure}
+
+In the event of a meteoroid impact, a small hole in the hull is created, and air begins to leak out. In this study, we aim to estimate the time required for significant pressure loss and investigate the impact of varying hole diameters on the air leakage rate. These idealized flow systems serve as crucial models for evaluating and comparing real-world flow scenarios, offering solutions with sufficient accuracy for numerous engineering applications—our investigation centers on isentropic flow. Isentropic flow is a reversible adiabatic process where no heat transfer occurs, and entropy remains constant \cite{partington-1954}. The flow closely approximates isentropic conditions when the opening is smooth and frictionless. Understanding these patterns helps astronauts escape and estimate the available time before critical pressure levels are reached during an emergency.
+
+\subsection{Problem Restatement}
+
+The exact wording of the problem is as follows:
+"A space station is approximately shaped like a cylinder with an interior length of 50 meters and a diameter of 4 meters. The air inside the space station is at a temperature of 20 C and a pressure of 1 atmosphere (101.3 kPa). A meteoroid makes a hole 1 cm in diameter in the center of one end of the space station. How much time would it take until the air pressure in the space station was only 0.3 atmosphere? How would this time be different for holes of different diameters?"
+\\\\
+To answer this problem, we have to provide the time it would take for the pressure inside to reduce from 1 to 0.3 atmospheres, with holes of differing diameters.
+\\\\
+The key points we need to consider are how pressure impacts the rate at which air escapes, turbulence from air escaping, and how much the size of the hole restricts airflow. 
+
+\section{Model}
+There are many differences between outer space and inside the station, which can affect the air leak differently. However, we know that the movement of air, which is some particles with mass, is caused by some forces. The air pressure is the only variable related to internal force in our spaceship system. So, the $\Delta P$ is the only thing we are truly concerned with; anything else does not truly matter as long as they do not affect our measurement for $\Delta P$. We will explain what we assumed about $P$ and $T$ below.
+\\\\
+To simplify the model, a discharge coefficient (\( C_d \)) is included to evaluate all other fluid dynamic effects like compression and turbulence. This coefficient allows us to account for the complex interactions within the system without adding unnecessary complexity to the analysis.
+\\\\
+Several basic assumptions are made to streamline the model. We assume that the shape of the spaceship is not changing, the inside of the spaceship is empty, and the air has the same composition as the near-surface atmosphere.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{cylinder 2.pdf}
+\caption{\label{fig:space}Graph of Spaceship (The Red Dot Represents the Hole)}
+\end{figure}
+
+The approach taken involves applying principles from the ideal gas law and using the Bernoulli equation tailored for compressible fluids. By building the model around these principles, we establish a system that estimates how air pressure and temperature affect the velocity and behavior of the airflow during leakage. 
+
+\subsection{Pressure}
+We assume the pressure outside the spaceship is close to 0, as outer space has an extremely sparse particle presence, resulting in almost no external pressure. This allows us to focus solely on the internal conditions of the spacecraft, where the gas behaves according to the ideal gas law. By treating the outer environment as a perfect vacuum, we ensure that any heat transfer or energy exchange from the inside to the outside is minimal and can be disregarded for modeling purposes.
+
+\subsection{Temperature}
+\subsubsection{Isothermal Shell}
+For this model, we assume that the spaceship's shell is isothermal, meaning it maintains a constant and uniform temperature throughout its structure. This simplification is justified in focusing on the behavior of air leakage and its impact on internal conditions without complicating the analysis with temperature gradients across the shell.
+
+\subsubsection{Effect of Change in Orbital and Height}
+ Because the station remains in the same orbit, the height does not change. Based on the equation for universal gravitation 
+\[
+F=G\frac{m_1m_2}{r^2}
+\]
+where F is the gravitational force acting between Earth and the space station, $m_1$ is the mass of Earth $m_2$ is that of the space station, and r is the distance between these two,  and Newton's second law\[
+F=ma
+\]
+where m is  $m_2$ in this case, and a is centripetal acceleration. we know that since r does not change, the acceleration of the space station does not change. The relationship between centripetal acceleration and tangential velocity is :
+\[
+a=\frac{v^2}{r}
+\]
+where r is the distance between Earth and the space station. Because the centripetal acceleration does not change, the tangential velocity remains the same. As kinetic energy is \[
+K=\frac{1}{2}mv^2
+\]
+So the kinetic energy remains the same. The average kinetic energy of a monatomic ideal gas is\cite{Kittel1980}\cite{Tolman1938}
+\[
+K=\frac{3}{2}k_B T
+\]
+$k_B$ is a constant, and K does not change. Therefore temperature does not change due to no changes in orbitals and height.
+
+\subsubsection{Change in Temperature Inside Spaceship}
+Additionally, we consider that the external environment, outer space, is a perfect vacuum at $0K$, implying that there are no particles or energy exchanges from outside entering the spaceship. Since the temperature measures average kinetic energy, the number of molecules decreased, but the average kinetic energy was not loss. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{temp.png}
+\caption{\label{fig:KineticMolecules}Illustration of Average Kinetic Energy and Total Molecules Over Time}
+\end{figure}
+The graph is not drawn to scale, nor the curve is in the right shape, but it shows clearly that the internal temperature of the spaceship does not decrease due to air loss. 
+
+
+
+
+\subsection{Discharge Coefficient}
+The Discharge Coefficient ($C_d$) is a dimensionless number representing the ratio of actual to theoretical flow rates through an orifice or nozzle.\cite{lees-1996} Physicists have studied this topic for many decades but still need a conclusion. For common situations, it normally varies between 0.6 to 1.0.\cite{fahyan-2009} In our general model of leaking air, we can assume $C_d$ to be 0.9.
+\\ \\
+We will explore more about $C_d$ and its effect in the \textbf{Method} section. 
+
+%This is the Theory
+\section{Theory}
+We use the basic laws of physics to derive equations useful to our specific situation.
+
+%Theory 1
+\subsection{Ideal Gas Law}
+We consider the gas inside and outside the space station as ideal gas to make a good approximation. According to the ideal gas law, the equation is:
+\[
+PV=nRT
+\]
+
+Because the amount of substance of gas is equal to the mass of the gas m, with unit kg, divided by molar mass M,  which is $n=\frac{m}{M}$. We then substitute it into $PV=nRT$:
+\[
+PV=\frac{mRT}{M}
+\]
+Rewritten, we get:
+\begin{equation}
+    m=\frac{MPV}{RT}
+\end{equation}
+Leading to:
+\begin{equation}
+    \rho=\frac{V}{m}=\frac{P}{RT}
+\end{equation}
+
+
+%Theory 2
+
+\subsection{Bernoulli's Principle}
+For compressible flow, Bernoulli's principle must be modified to consider changes in fluid density. The standard form of Bernoulli's equation for incompressible flow does not apply directly, as density (\(\rho\)) is not constant. For compressible flow, energy conservation can still be used, but it involves more advanced equations that consider changes in internal energy and pressure-volume work:
+\begin{equation}
+    \frac{P}{\rho} + \frac{1}{2} v^2 + h = \text{constant}
+\end{equation}
+
+Where \(h\) includes the internal energy term for compressible flow.
+
+\subsection{Continuity function}
+For compressible fluids, the continuity equation takes into account the changes in density:
+\begin{equation}
+    \frac{\partial (\rho A v)}{\partial x} = 0
+    \notag
+\end{equation}
+
+This equation states that the mass flow rate \(\rho A v\) must remain constant across the flow. In a steady flow, this simplifies to:
+
+\begin{equation}
+    \rho_1 A_1 v_1 = \rho_2 A_2 v_2
+\end{equation}
+
+\subsection{Properties of Fluid}
+According to Saad, 1985, fluids deform continuously when subjected to shearing forces. A fluid that shows a marked change of density with a change in pressure is compressible; one that shows a negligible change of density with a change in pressure is incompressible. The change of density of a single-component, single-phase fluid as a function of temperature and pressure may be expressed as:\cite{saad-1985}
+
+\begin{equation}
+d\rho = \left( \frac{\partial \rho}{\partial T} \right)_p dT + \left( \frac{\partial \rho}{\partial p} \right)_T dp
+\notag
+\end{equation}
+
+When divided by $\rho$, this becomes:
+
+\begin{equation}
+\frac{d\rho}{\rho} = \frac{1}{\rho} \left( \frac{\partial \rho}{\partial T} \right)_p dT + \frac{1}{\rho} \left( \frac{\partial \rho}{\partial p} \right)_T dp
+\end{equation}
+
+Similarly, the relative change in volume can be expressed as:
+
+\begin{equation}
+\frac{dv}{v} = \frac{1}{v} \left( \frac{\partial v}{\partial T} \right)_p dT + \frac{1}{v} \left( \frac{\partial v}{\partial p} \right)_T dp
+\end{equation}
+
+There are further studies on the compressibility of fluid flow. For our model, Eqs. (5) and (6) are enough.
+
+\subsection{Mass Flow Rate}
+In physics and engineering, the mass flow rate is the rate at which the mass of a substance changes over time. It can be expressed as:
+\[
+\dot{m} = \lim_{\Delta t \to 0} \frac{\Delta m}{\Delta t} = \frac{dm}{dt}
+\]
+
+Now we introduce the concept of the Adiabatic Index ($\gamma$). It determines how pressure, temperature, and volume relate to one another in an isentropic process. In this paper, $C$ refers to the relevant specific heat for air.
+
+\begin{equation}
+    \gamma=\frac{C_p}{C_v}\notag
+\end{equation}
+
+When temperature and pressure changes are not large, values of the specific heats (and hence their ratio $\gamma$) are assumed to be constant. For air under moderate pressure and temperature:\cite{saad-1985}
+
+\begin{align*}
+C_p &= 1.0035 \, \text{kJ/kg K} \\
+C_v &= 0.7165 \, \text{kJ/kg K} 
+\end{align*}
+
+Therefore 
+\begin{equation}
+    \gamma = 1.4
+    \notag
+\end{equation}
+
+The mass flow rate $\frac{dm}{dt}$ through an hole can be expressed as:
+
+\begin{equation}\notag
+\frac{dm}{dt} = C_d \cdot A \cdot P \cdot \sqrt{\frac{\gamma}{R \cdot T} \cdot \left( \frac{2}{\gamma + 1} \right)^{\frac{\gamma + 1}{\gamma - 1}}}
+\end{equation}
+
+This expression for mass flow rate can be simplified by grouping constants together. For air, the term:
+\begin{equation}
+    \sqrt{\frac{\gamma}{R \cdot T}} \left( \frac{2}{\gamma + 1} \right)^{\frac{\gamma + 1}{2(\gamma - 1)}}
+    \notag
+\end{equation}
+can be approximated to a simpler form, given as:
+\begin{equation}
+    \sqrt{\frac{M}{R \cdot T}}
+    \notag
+\end{equation}
+
+Therefore, we arrive at:
+\begin{equation}
+    \frac{dm}{dt} = -C_d A P \sqrt{\frac{M}{R T}}.
+\end{equation}
+
+%This is the Method
+\section{Method}
+
+\subsection{Model 1 - Specific Solution of Air}
+To derive a differential equation for the relationship between mass and pressure over time in a space station experiencing air leakage due to meteoroid damage, we use the ideal gas law and principles of fluid dynamics.
+\\\\
+According to the ideal gas law modification in Eqs.(1),  we have:
+
+\begin{equation}
+    m = \frac{PVM}{RT}
+    \notag
+\end{equation}
+
+This equation relates the mass $m$ of air inside the space station to the pressure $P(t)$.
+\\\\
+
+
+As air escapes through the hole, the mass $m$ inside the space station decreases over time. As we know from Eqs.(7), the mass flow rate through a hole:
+\begin{equation}
+    \frac{dm}{dt} = -C_d A P \sqrt{\frac{M}{RT}}
+    \notag
+\end{equation}
+
+
+The negative sign indicates that the mass inside the space station is decreasing over time.
+\\\\
+Substitute $m = \frac{PVM}{RT}$ into the differential equation for mass loss:
+\begin{equation}
+    \frac{d}{dt} \left(\frac{PVM}{RT}\right) = -C_d A P \sqrt{\frac{M}{RT}}
+    \notag
+\end{equation}
+
+We can then simplify this to:
+\begin{equation}\notag
+    \frac{VM}{RT} \frac{dP}{dt} = -C_d A P \sqrt{\frac{M}{RT}}
+\end{equation}
+
+Rearrange to isolate $\frac{dP}{dt}$:
+\begin{equation}\notag
+    \frac{dP}{dt} = -\frac{C_d A}{V} P \sqrt{\frac{RT}{M}}
+\end{equation}
+
+The differential equation is now:
+\begin{equation}\notag
+    \frac{dP}{dt} = -kP
+\end{equation}
+where $k = \frac{C_d A}{V} \sqrt{\frac{RT}{M}}$ is a constant. This is a separable differential equation.
+\\\\
+Separating variables and integrating:
+\begin{equation}\notag
+    \int \frac{1}{P} \, dP = -k \int \, dt
+\end{equation}
+
+Solving the integrals gives:
+\begin{equation}\notag
+    \ln P = -kt + C
+\end{equation}
+where $C$ is the integration constant. Exponentiate both sides and solve for $P$:
+\begin{equation}\notag
+    P(t) = P_0 e^{-kt}
+\end{equation}
+
+Now, we can find the time $t$ it takes for the pressure to drop to 0.3 atmospheres by setting $P(t) = 0.3P_0$:
+\begin{equation}\notag
+    0.3P_0 = P_0 e^{-kt}
+\end{equation}
+
+Simplifying:
+\begin{equation}\notag
+    0.3 = e^{-kt}
+\end{equation}
+
+Taking the natural logarithm of both sides:
+\begin{equation}\notag
+    \ln 0.3 = -kt
+\end{equation}
+
+Solving for $t$:
+\begin{equation}\notag
+    t = -\frac{\ln 0.3}{k}
+\end{equation}
+
+Substitute $k = \frac{C_d A}{V} \sqrt{\frac{RT}{M}}$ to find $t$:
+\begin{equation}
+    t = -\frac{\ln 0.3 V}{C_d A} \sqrt{\frac{M}{RT}}
+\end{equation}
+
+
+\subsection{Model 2 - General Isentropic-nozzle Solution}
+In a real-world situation, the behavior of air around the hole would be different significantly from place to place. In this model, we treat the hole as a "nozzle". Furthermore, we do not assume \emph{temperature and pressure changes are not large} anymore. Instead, we take the adiabatic index ($\gamma$) into consideration.
+\\\\
+The flow properties of perfect gas with constant specific heat can be related to Mach Number ($M$). 
+
+\begin{equation}\notag
+    M=\frac{v}{c}
+\end{equation}
+
+Static temperature and stagnation temperature are related as follows:\cite{saad-1985}
+\begin{equation}\notag
+\frac{T_0}{T} =  1 + \frac{\gamma - 1}{2} M^2 
+\end{equation}
+
+When perfect gas flows isentropically, pressure and density are related to the temperature in the following ways, where $P_{out}$ and $\rho_{out}$ represent the pressure and density of the space:
+\begin{equation}
+    \frac{P_0}{P_{out}}=(\frac{T_0}{T})^\frac{\gamma}{\gamma-1}
+\end{equation}
+and
+\begin{equation}
+    \frac{\rho_0}{\rho_{out}}=(\frac{T_0}{T})^\frac{1}{\gamma-1}
+\end{equation}
+
+Combine Eqs.(9) (10) with Eqs.(5) (6), and proceed with some math,\cite{saad-1985} we can get:
+
+\begin{equation}
+\frac{P_0}{P_{out}} = \left( 1 + \frac{\gamma - 1}{2} M^2 \right)^{\gamma/(\gamma - 1)}
+\end{equation}
+and
+\begin{equation}
+\frac{\rho_0}{\rho_{out}} = \left( 1 + \frac{\gamma - 1}{2} M^2 \right)^{1/(\gamma - 1)}
+\end{equation}
+
+And $M$ also can be derived from Eqs.(9):
+\begin{equation}
+\left( \frac{P_0}{P_{out}} \right)^{(\gamma - 1)/\gamma} = 1 + \frac{\gamma - 1}{2} M^2\notag
+\end{equation}
+
+\begin{equation}
+\frac{\gamma - 1}{2} M^2= \left( \frac{P_0}{P_{out}} \right)^{(\gamma - 1)/\gamma} - 1 \notag
+\end{equation}
+
+\begin{equation}
+M^2 = \frac{2}{\gamma - 1} \left[ \left( \frac{P_0}{P_{out}} \right)^{(\gamma - 1)/\gamma} - 1 \right]\notag
+\end{equation}
+Then we land at:
+\begin{equation}
+    M=\pm \sqrt{\frac{2}{\gamma - 1} \left[ \left( \frac{P_0}{P_{out}} \right)^{(\gamma - 1)/\gamma} - 1 \right]}
+\end{equation}
+We realize that $M$ is related to the pressure difference. In our case, the pressure of outer space is 0, which would lead our calculation to a mathematical failure in Eqs.(13). To avoid this, we examine what is the type of flow in and near the hole. \\\\
+To identify whether the flow is subsonic or choked (sonic), we compare the actual pressure ratio to the critical pressure ratio for choked flow.
+\\\\
+For air (with $\gamma = 1.4$):
+\begin{equation}\notag
+\left( \frac{P_2}{P_1} \right)_{\text{critical}} = \left( \frac{2}{\gamma + 1} \right)^{\gamma/(\gamma - 1)} = \left( \frac{2}{2.4} \right)^{3.5} \approx 0.528
+\end{equation}
+
+The actual pressure ratio:
+\begin{equation}\notag
+\left( \frac{P_1}{P_0} \right)_{\text{critical}} = \left( \frac{0}{\gamma + 1} \right)^{\gamma/(\gamma - 1)}  =0
+\end{equation}
+
+Since the actual pressure ratio is less than the critical pressure ratio, choked flow occurs, it is reasonable to proceed with $M=1$.\cite{saad-1985}
+
+\vspace{\baselineskip} 
+Looking back to our spaceship, the mass flow rate per unit area (mass flux) for the flow, $G$ is given by:
+\begin{equation}\notag
+    G=\frac{\dot{m}}{A}=\rho v
+\end{equation}
+
+According to Eqs. (2), for perfect gas, we have:
+\begin{equation}\notag
+    \rho=\frac{P}{RT}
+\end{equation}
+and
+\begin{equation}
+    c=\sqrt{\gamma RT}
+\end{equation}
+
+Therefore:
+\begin{equation}
+    \frac{\dot{m}}{A} = \rho v M = P \left(\frac{v}{c}\right)\sqrt{\frac{\gamma}{RT_0}}
+\end{equation}
+
+Substituting for $P$ and $T$ from Eqs.(14) and (15), we get:
+\begin{equation}\notag
+    G=\frac{\dot{m}}{A}=\frac{\rho_0}{\sqrt{T_0}} \frac{M}{\left(1+\frac{\gamma -1}{2}M^2\right)^\frac{\gamma+1}{2(\gamma-1)}}
+\end{equation}
+
+\begin{equation}\notag
+\frac{\dot{m}}{A}  = \rho_0 \left(1 + \frac{\gamma - 1}{2} M^2 \right)^{-1/(\gamma - 1)}  \sqrt{\gamma R T_0 \left(1 + \frac{\gamma - 1}{2} M^2 \right)^{-1}} M
+\end{equation}
+
+Simplify the expression:
+\begin{equation}\notag
+\dot{m} = A\rho_0 \sqrt{\gamma R T_0} M \left(1 + \frac{\gamma - 1}{2} M^2 \right)^{-\left(\frac{1}{\gamma - 1} + \frac{1}{2}\right)}
+\end{equation}
+
+Calculate the combined exponent:
+\begin{equation}\notag
+\frac{1}{\gamma - 1} + \frac{1}{2} = \frac{2 + (\gamma - 1)}{2(\gamma - 1)} = \frac{\gamma + 1}{2(\gamma - 1)}
+\end{equation}
+
+So the expression becomes:
+\begin{equation}\notag
+\dot{m}= A\rho_0 \sqrt{\gamma R T_0} M \left(1 + \frac{\gamma - 1}{2} M^2 \right)^{-\frac{\gamma + 1}{2(\gamma - 1)}}
+\end{equation}
+
+Applying simple math, we get:
+\begin{equation}\notag
+\dot{m}=m'(t) = -C_d A P(t) \sqrt{\gamma R T_0} \left( \frac{2}{\gamma + 1} \right)^{\frac{\gamma + 1}{2(\gamma - 1)}}
+\end{equation}
+
+\begin{equation}\notag
+    P(t)=\frac{T_0 m(t)}{MV}
+\end{equation}
+
+Then we simplify it into:
+\begin{equation}
+\left\{
+\begin{array}{ll}
+m'(t) = -AkP(t), & \text{$k = C_d\sqrt{\gamma R T_0}\left( \frac{2}{\gamma + 1} \right)^{\frac{\gamma + 1}{2(\gamma - 1)}}$} \\
+    P(t)=\omega m(t), & \text{$\omega=\frac{T}{MV}$}
+\end{array}
+\right.
+\end{equation}
+
+Start by dividing both sides by \( P_0 \):
+\begin{equation}\notag
+    \frac{P(t)}{P_0} = e^{-A k \omega t}
+\end{equation}
+
+Take the natural logarithm of both sides:
+\begin{equation}\notag
+    \ln \left(\frac{P(t)}{P_0}\right) = -A k \omega t
+\end{equation}
+
+Solve for \( t \):
+\begin{equation}\notag
+    t = -\frac{\ln \left(\frac{P(t)}{P_0}\right)}{A k \omega}
+\end{equation}
+
+If we are looking for the time when the pressure drops to 30\% of its initial value, set \( P(t) = 0.3 P_0 \):
+\begin{equation}\notag
+    t = -\frac{\ln \left(\frac{0.3 P_0}{P_0}\right)}{A k \omega}
+\end{equation}
+
+Simplify the expression:
+\begin{equation}\notag
+    t = -\frac{\ln(0.3)}{A k \omega}
+\end{equation}
+
+The time \( t \) for the pressure to drop to 30\% of its initial value is:
+\begin{equation}\notag
+    t = \frac{\ln(0.3)}{A k \omega}
+\end{equation}
+Recall that $\omega$ and $k$ has their own value from Eqs.(16), plug that in, we have:
+\begin{equation}\notag
+    t=-\frac{ln(0.3)V}{C_d A (\sqrt{\gamma R T_0}(\frac{2}{\gamma+1})^\frac{\gamma+1}{2(\gamma-1)})\sqrt{\frac{RT}{M}}}
+\end{equation}
+
+Simplify the expression:
+\begin{equation}
+    t=-\frac{ln(0.3)V}{C_d A} \sqrt{\frac{M}{RT}} \frac{1}{\sqrt{\gamma R T_0}(\frac{2}{\gamma+1})^\frac{\gamma+1}{2(\gamma-1)}}
+\end{equation}
+
+
+\subsection{Discussion of Discharge Coefficient}
+From our resulting equation Eqs.(8) and (17), we could see that $C_d$ has a huge impact on our computation of $P(t)$. There are lots of potential factors for $C_d$ in our case. We will explore three main properties that would increase the value of $C_d$ significantly. 
+
+\subsubsection{Surface Roughness}
+    The perimeter of the hole caused by the impact is rough. Physicists have long been interested in this property, and there is extensive research on how surface roughness affects the drag coefficient. We will not dig into the details, but it is a common conclusion that surface roughness can significantly influence the airflow behavior, generally increasing $C_d$.\cite{schlichting-1955}
+    \begin{figure}[H] 
+    \centering
+    \includegraphics[width=0.5\textwidth]{SpceshipOutlayer.jpg} 
+    \caption{Close Up Picture of Space Shuttle Atlantis\cite{Albin_Merle}}
+    \end{figure}
+    
+    The outer surface of a spacecraft is designed with multiple layers of specialized materials, including metals such as aluminium alloys, titanium, and thermal protection tiles made of carbon or ceramic.\cite{Finckenor_Miria} Due to the composite structure and the necessity for protective coatings, the surface could be more perfectly smooth; it often exhibits micro-roughness from manufacturing joints, thermal shielding overlaps, and wear over time. When a meteoroid or asteroid impact occurs, the resulting hole is irregularly shaped and inherits the roughness of these layered materials.
+
+\subsubsection{Flow Regime}
+    The irregularity of the hole would promote a turbulent flow rather than a laminar flow. \\\\
+    Laminar flow is characterized by orderly fluid motion with parallel layers and minimal energy loss, resulting in a lower $C_d$. In contrast, turbulent flow is chaotic, with eddies and vortices forming, leading to higher energy dissipation and an increased $C_d$.\cite{fahyan-2009} \\\\
+    High-pressure differences and fast-moving air escaping from the spacecraft contribute to a higher Reynolds number ($Re$), defined by:
+
+    
+\begin{equation}
+    Re = \frac{\rho v D}{\mu}
+\end{equation}
+
+where $\rho$ is the density of the air, $v$ is the velocity of the escaping air, $D$ is a characteristic length , and $\mu$ is the dynamic viscosity of the air. 
+\\\\Some research has been done to evaluate the true relationship between $C_d$ and $Re$. Generally, $C_d$ increases with the increase of $Re$. Here is a set of data demonstrating this relationship. It is obtained for the fixed orifice of a PC valve manufactured by \emph{Brand Hydraulics Inc} (Figure a) and a $\frac{3}{4}"$ needle valve manufactured by \emph{Deltrol Fluid Prod} (Figure b)
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Re1.jpg}
+        \caption{PC Valve}
+        \label{fig:figure1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Re2.jpg}
+        \caption{Needle Valve}
+        \label{fig:figure2}
+    \end{subfigure}
+    \caption{Relationship Between $C_d$ and $\sqrt{Re}$ \cite{wu-2002}}
+    \label{fig:two_figures}
+\end{figure}
+
+When an asteroid impacts a spaceship, it creates a typically jagged and irregular hole, causing detachment and vortex formation that also increase $Re$. 
+
+
+\subsubsection{Angle of Attack (Irregular Entry Points)}
+    The varied edges of the impact site can change how the air flows through the hole. Irregular entry and exit angles increase drag, making the air leakage less predictable and potentially faster.\cite{wu-2002}
+    \begin{figure}[H]
+\centering
+\includegraphics[width=0.65\linewidth]{Orifices.jpg}
+\caption{Three Type of Orifice \cite{wu-2002}}
+\end{figure}
+
+%This is the Result
+\section{Results and Interpretation}
+
+\subsection{Diameter and Time Relationship}
+For this instance, we estimated $C_d = 0.9$, and adjusting this value does not change the \emph{relative} position of the data points. By running different values of hole diameter through our model, we can graph how different values affect the time it takes to reach 0.3 atmospheres.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Graphs/TDCchart.png}
+\caption{\label{fig:DiameterTime}This shows the time it takes to reach 0.3 Atmospheres for different hole diameters.}
+\end{figure}
+
+The curve decays exponentially concerning the hole diameter, and holes smaller than 1 cm can take \emph{thousands} of hours to decompress, dominating the curve. Instead, it is more helpful to chop off values that are under 1 cm.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Graphs/TDCchartCut.png}
+\caption{\label{fig:DiameterTimeCrop}Exact same graph but without values under 1 cm.}
+\end{figure}
+
+The data is much clearer now. It's easy to observe the relationship between hole diameter and time for diameters greater than 1 cm. As previously noted, the time it takes to reach 0.3 atmospheres decreases exponentially as the hole diameter increases. Here are some key points to consider:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{2cm}|p{4cm}|}
+    \hline
+    Diameter & Time to 0.3 Atmospheres\\
+    \hline
+     1 cm & 10.25 Hours\\
+     3 cm & 1.14 Hours\\
+     5 cm & 24.6 Minutes\\
+     \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Pressure over Time}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+            \includegraphics[width=1\linewidth]{Graphs/PressureTime1cmC9.png}
+            \caption{1 cm Diameter.}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+            \includegraphics[width=1\linewidth]{Graphs/PressureTime2cmC9.png}
+            \caption{2 cm Diameter.}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+            \includegraphics[width=1\linewidth]{Graphs/PressureTime3cmC9.png}
+            \caption{3 cm Diameter.}
+    \end{subfigure}
+\end{figure}
+
+As the hole diameter increases, the rate at which air escapes the station increases dramatically, and you can see how (b) and (c) reach 0.3 atmospheres much faster than (a). 
+
+\subsection{Discharge Coefficient and Time}
+Given that $C_d$ might not be 0.9, we can compare the graphs to others with a different $C_d$ used.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/DiameterTimeC7.png}
+        \caption{$C_d = 0.7$}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/DiameterTimeC8.png}
+        \caption{$C_d=0.8$}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/DiameterTimeC9.png}
+        \caption{$C_d=0.9$}
+    \end{subfigure}
+    
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/PressureTime1cmC7.png}
+        \caption{$C_d = 0.7$}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/PressureTime1cmC8.png}
+        \caption{$C_d=0.8$}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/PressureTime1cmC9.png}
+        \caption{$C_d=0.9$}
+    \end{subfigure}
+    \caption{Comparing different $C_d$}
+\end{figure}
+
+It is hard to see with the naked eye but there is a difference. For three graphs of time to 0.3 atm, if the hole diameter increases from 1 cm to 1.5 cm, the time in the graph with $C_d=0.7$ decreases by approximately 7.2 hrs, higher than that of $C_d=0.8$ and $C_d=0.9$, which are approximately 6.6 hrs and 5.5 hrs respectively. Similarly, from the graphs of pressure for a 1 cm diameter hole, a lower $C_d$ results in a quicker decrease in pressure. A lower $C_d$ makes the curve steeper, meaning more pressure is lost in the first few hours.
+
+
+
+%This is the Result
+\section{Discussion and Conclusion}
+
+\subsection{Comparing Model 1- Specific Solution and Model 2 - General Isentropic-Nozzle Solution}
+If we take a close look at Eqs. (8) and (17), we will immediately notice that they share a lot of similarities:
+\begin{equation}
+\label{Eqs.8}
+\tag{8}
+    t = -\frac{\ln 0.3 V}{C_d A} \sqrt{\frac{M}{RT}}
+\end{equation}
+
+\begin{equation}\tag{17}
+    t=-\frac{ln(0.3)V}{C_d A} \sqrt{\frac{M}{RT}} \frac{1}{\sqrt{\gamma R T_0}(\frac{2}{\gamma+1})^\frac{\gamma+1}{2(\gamma-1)}}
+\end{equation}
+\\\\
+The only difference is that Eqs.(17) has a additional term of :
+\begin{equation}\notag
+    \frac{1}{\sqrt{\gamma R T_0}(\frac{2}{\gamma+1})^\frac{\gamma+1}{2(\gamma-1)}}
+\end{equation}
+
+We hypothesize that the actual function describing the leaking air is influenced by the specific heat of the fluid. However, further research is needed to verify this hypothesis.
+
+\subsection{Limitations }
+\subsubsection{Non-Zero Temperature and Pressure}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth} 
+        \raggedright
+        \includegraphics[width=0.7\linewidth]{basic layers of the atmosphere.jpg} 
+        \caption{The five basic layers of the atmosphere \cite{noaa_layers}}
+        \label{fig:layers1}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.55\textwidth} 
+        \raggedleft
+        \includegraphics[width=\linewidth]{lower layers of the atmosphere.jpg} 
+        \caption{Average temperature profile for the lower layers of the atmosphere \cite{noaa_layers}}
+        \label{fig:layers2}
+    \end{minipage}
+\end{figure}
+    
+We assume the space station is the International Space Station (ISS). The average altitude of its orbit is between 370 kilometer and 460 kilometer\cite{nasa_iss}. Between 85 kilometers and 600 kilometers lies the thermosphere, where the temperature increases sharply from -120 Celsius to 2000 Celsius from the bottom of the layer to the top of the layer\cite{noaa_layers}. So, the temperature is affected by the altitude of the space orbit. However, during the modeling, we do not consider temperature changes.
+
+\subsubsection{Non Isothermal}
+The leakage process in a real-world scenario cannot be considered purely adiabatic because some heat loss occurs due to heat transfer inside airflow. \\\\
+Additionally, the outer shell of the spaceship is not perfectly isothermal. Any object with mass will conduct and transfer heat to some extent, influencing the overall temperature distribution. In practice, spaceships are equipped with various heating and thermal regulation systems to maintain a habitable environment for astronauts. These systems are crucial for counteracting the heat lost through conduction, radiation, and the effects of air leakage. The complexity of maintaining a stable internal temperature highlights the importance of accurately modeling heat transfer to account for the non-adiabatic and non-isothermal nature of real-life spacecraft environments.
+
+\subsubsection{Non-Zero Acceleration}
+
+    \begin{figure}[H] 
+    \centering
+    \includegraphics[width=0.3\textwidth]{Mars_Rescue.jpg} 
+    \caption{Watney Use Air to Fly in Space in the Movie \emph{The Martian}\cite{weir2014martian}}
+    \end{figure}
+    
+The ejected airflow will impart a reactive force that accelerates the spaceship. This acceleration influences the distribution of air inside the spacecraft, potentially altering the pressure gradients. As a result, the velocity of the leaking airflow may change due to shifts in internal pressure distribution and flow dynamics. 
+
+\subsection{Conclusion}
+At the end of the day, we found that it takes 10 hours and 15 minutes for the pressure to drop to 0.3 atmospheres, and an increase in the hole's diameter leads to an exponential decrease in the time it takes.
+\\\\
+In a harsh environment like the vacuum of space, it is critically important that everything goes smoothly. With the level of technology we are using to reach the beyond, there are so many failure points, that it seems ridiculous to even try. And yet the human spirit cannot help but be curious, and reach out in spite of the dangers. In situations like the one this paper explores, the astronauts and engineers need as much information as humanly possible to overcome these never-before-seen challenges. By doing this paper, and this competition, we have gotten a glimpse into the real-world problems these people face, and earned a new appreciation for the incredible work that humanities best can provide. 
+
+\newpage
+%This is the Appendix
+\section{Appendix}
+
+
+
+\subsection{Mathematica code}
+\lstinputlisting[language=Mathematica]{Mathematica_Code.txt} 
+
+\newpage

@@ -1,1 +1,1 @@
-Sitemap: https://Henry-cmd1.github.io/henryjiang.github.io/sitemap.xml
+Sitemap: https://henryjiang.me/sitemap.xml

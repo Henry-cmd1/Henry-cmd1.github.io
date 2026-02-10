@@ -1,7 +1,6 @@
-# Henry Jiang — Personal Website
+# Personal Website
 
 This is my personal website, built with **[Quarto](https://quarto.org)** and hosted on **GitHub Pages**.  
-It serves as a place to share my academic projects, coursework, and research in physics and data science.
 
 ### 🔗 Links
 - **Website:** [https://henryjiang.me](https://henryjiang.me)  
@@ -9,8 +8,3 @@ It serves as a place to share my academic projects, coursework, and research in 
 - **LinkedIn:** [https://linkedin.com/in/henryshihengjiang](https://linkedin.com/in/henryshihengjiang)
 
 
----
-
-> Built with ❤️ and ChatGPT’s help.
-
-**O-H!** — *Go Bucks!* 🏈🌰

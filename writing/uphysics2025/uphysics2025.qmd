@@ -5,11 +5,13 @@ date: 11 28, 2024
 toc: true
 toc-depth: 3
 number-sections: true
+categories: [UPhysics Competition]
 format:
   html:
     html-math-method: mathjax
     code-fold: false
     code-tools: false
+
 ---
 
 ::: {.callout-note}

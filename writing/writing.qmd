@@ -1,5 +1,5 @@
 ---
-title: "✍️ Writing"
+title: "Writing Archive"
 listing:
   contents: .
   type: grid
@@ -7,3 +7,4 @@ listing:
   fields: [title, date, description]
   categories: true
 ---
+

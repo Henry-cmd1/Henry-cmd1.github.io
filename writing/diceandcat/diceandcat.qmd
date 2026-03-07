@@ -1,10 +1,10 @@
 ---
 title: "The Dice, The Cat"
 date: last-modified
-date-format: "Last Updated: MMM D, YYYY"
 toc: true
 toc-depth: 3
 number-sections: true
+categories: [Physics]
 format:
   html:
     html-math-method: katex
